@@ -1,0 +1,16 @@
+---
+- name: Setup Jenkins Server with Terraform and Ansible
+hosts: Jenkins
+become: true
+tasks:
+
+    - name: Upload setup.sh to Server
+      copy: 
+      src: setup.sh
+      dest: /tmp/setup.sh
+      mode: '0755'
+
+    - name: Run setup.sh script
+      shell: bash /tmp/setup.sh
+      args: 
+         executable: /bin/bash
